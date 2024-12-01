@@ -50,6 +50,7 @@ class LoginHandler {
 		}
 		this.login = async (captcha?: string) => {
 			if (!csrf) throw new PrometheusAuthError("Login function hasn't been initialized.")
+			if (!captcha && this.isCaptchaRequired) throw new PrometheusAuthError("Captcha is required.")
 			const loginReq = await client.post('https://eduvulcan.pl/logowanie', new URLSearchParams(
 				{
 					'Alias': login,

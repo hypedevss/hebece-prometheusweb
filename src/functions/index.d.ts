@@ -36,6 +36,7 @@ export interface PrometheusStudent {
 	journalUrl: string
 	symbol: string
 }
+
 interface VParamUser {
 	name: string
 }

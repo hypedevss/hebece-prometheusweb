@@ -1,12 +1,12 @@
 {
   "name": "@hebece/addon-prometheusweb",
-  "version": "0.0.1-beta",
+  "version": "0.0.1",
   "description": "Addon for hebeCE to use paid features for free",
   "main": "bin/index.js",
   "scripts": {
     "build": "tsc",
     "clean": "rm -r ./bin",
-    "type": "",
+    "type": "cp ./src/functions/index.d.ts ./bin/functions/index.d.ts",
     "test": "npm run clean && npm run build && npm run type",
     "upload": "npm run clean && npm run build && npm run type && npm publish"
   },
@@ -18,7 +18,6 @@
     "axios-cookiejar-support": "^5.0.3",
     "cheerio": "^1.0.0",
     "hebece": "^0.1.1",
-    "jose": "^5.9.6",
     "os": "^0.1.2",
     "tough-cookie": "^5.0.0"
   },
