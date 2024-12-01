@@ -8,7 +8,7 @@
     "clean": "rm -r ./bin",
     "type": "cp ./src/functions/index.d.ts ./bin/functions/index.d.ts",
     "test": "npm run clean && npm run build && npm run type",
-    "upload": "npm run clean && npm run build && npm run type && npm publish"
+    "upload": "npm run clean && npm run build && npm run type && npm publish --access=public"
   },
   "keywords": [],
   "author": "xiaom1hype",
