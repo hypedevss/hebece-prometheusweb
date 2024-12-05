@@ -1,6 +1,6 @@
 {
   "name": "@hebece/addon-prometheusweb",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Addon for hebeCE to use paid features for free",
   "main": "bin/index.js",
   "scripts": {
