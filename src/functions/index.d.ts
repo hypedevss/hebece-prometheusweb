@@ -125,3 +125,191 @@ export interface SelectedStudent {
 	key: string
 	messageBoxId: string
 }
+
+export interface MessageBoxes {
+	globalKey: string
+	nazwa: string
+	typUzytkownika: number
+}
+
+// messages
+
+export interface MessageRaw {
+	apiGlobalKey: string
+	korespondenci: string
+	temat: string
+	data: string
+	skrzynka: string
+	hasZalaczniki: boolean
+	przeczytana: boolean
+	nieprzeczytanePrzeczytanePrzez: null | any
+	wazna: boolean
+	uzytkownikRola: number
+	wycofana: boolean
+	odpowiedziana: boolean
+	przekazana: boolean
+	id: number
+}
+
+export interface MessageEn {
+	apiGlobalKey: string
+	sender: string
+	subject: string
+	date: string
+	box: string
+	hasAttachments: boolean
+	read: boolean
+	readBy: null | any
+	important: boolean
+	userRole: number
+	deleted: boolean
+	replied: boolean
+	forwarded: boolean
+	id: number
+}
+
+interface MessageAttachmentRaw {
+	url: string
+	nazwaPliku: string
+}
+
+interface MessageAttachmentEn {
+	url: string
+	name: string
+}
+
+export interface MessageDetailsRaw {
+	data: string
+	apiGlobalKey: string
+	nadawca: string
+	nadawcaTyp: number
+	odbiorcy: Array<string>
+	tresc: string
+	odczytana: boolean
+	zalaczniki: Array<MessageAttachmentRaw>
+	nadawcaInfo: string
+	wycofana: boolean
+	dataWycofania: null | string
+	id: number
+}
+
+export interface MessageDetailsEn {
+	data: string
+	apiGlobalKey: string
+	sender: string
+	senderType: number
+	recipients: Array<string>
+	content: string
+	read: boolean
+	attachments: Array<MessageAttachmentEn>
+	senderInfo: string
+	deleted: boolean
+	deletedDate: null | string
+	id: number
+}
+
+// address book entry
+
+export interface AddressBookEntryRaw {
+	metadata: EmployeeMetadataRaw & StudentMetadataRaw & ParentMetadataRaw
+	skrzynkaGlobalKey: string
+	nazwa: string
+	oddzial: null
+	pseudonim: null
+	hasInternetAccess: boolean
+}
+
+export interface AddressBookEntryEn {
+	metadata: EmployeeMetadataEn & StudentMetadataEn & ParentMetadataEn
+	boxGlobalKey: string
+	name: string
+	department: null
+	nick: null
+	hasInternetAccess: boolean
+}
+
+interface EmployeeMetadataRaw {
+	role: Array<number>
+	dziennikiZajeciaInneIds: Array<number>
+	przedmiotyIds: Array<number>
+	oddzialyIds: Array<number>
+	oddzialyPrzedszkolneIds: Array<number>
+	oddzialyWychowankowieIds: Array<number>
+	oddzialyWychowawcyIds: Array<number>
+	oddzialyPrzedszkolneWychowawcyIds: Array<number>
+	oddzialyWychowankowieWychowawcyIds: Array<number>
+}
+
+interface EmployeeMetadataEn {
+	roles: Array<number>
+	otherLessonsIds: Array<number>
+	subjectsIds: Array<number>
+	departmentsIds: Array<number>
+	preschoolDepartmentIds: Array<number>
+	pupilDepartmentIds: Array<number>
+	teacherDepartmentIds: Array<number>
+	preschoolTeacherDepartmentIds: Array<number>
+	pupilTeacherDepartmentIds: Array<number>
+}
+
+interface StudentMetadataRaw {
+	isSamorzadSzkolny: boolean
+	dziennikiZajeciaInneIds: Array<number> | null
+	grupyIds: Array<number> | null
+	oddzialyIds: Array<number> | null
+	oddzialySamorzadUczniowskichIds: Array<number> | null
+	oddzialyPrzedszkolneIds: Array<number> | null
+	oddzialyWychowankowieIds: Array<number> | null
+}
+
+interface StudentMetadataEn {
+	isSchoolSelfGovernment: boolean
+	otherLessonsIds: Array<number> | null
+	groupsIds: Array<number> | null
+	departmentsIds: Array<number> | null
+	studentSelfGovernmentDepartmentIds: Array<number> | null
+	preschoolDepartmentIds: Array<number> | null
+	pupilDepartmentIds: Array<number> | null
+}
+
+interface ParentMetadataRaw {
+	dziennikiZajeciaInneIds: Array<number> | null
+	oddzialyIds: Array<number> | null
+	oddzialyRadaRodzicowIds: Array<number> | null
+	oddzialyPrzedszkolneIds: Array<number> | null
+	oddzialyPrzedszkolneRadaRodzicowIds: Array<number> | null
+	oddzialyWychowankowieIds: Array<number> | null
+}
+
+interface ParentMetadataEn {
+	otherLessonsIds: Array<number> | null
+	departmentsIds: Array<number> | null
+	parentCouncilDepartmentIds: Array<number> | null
+	preschoolDepartmentIds: Array<number> | null
+	preschoolParentCouncilDepartmentIds: Array<number> | null
+	pupilDepartmentIds: Array<number> | null
+}
+
+// message sending
+
+export interface MessageSendRaw {
+	globalKey: string
+	watekGlobalKey: string
+	nadawcaSkrzynkaGlobalKey: string
+	adresaciSkrzynkaGlobalKey: string
+	tytul: string
+	tresc: string
+	zalaczniki: Array<MessageAttachmentRaw>
+	powitalna: boolean
+}
+
+export interface MessageSendEn {
+	globalKey: string
+	threadGlobalKey: string
+	senderBoxGlobalKey: string
+	recipientsBoxGlobalKey: string
+	title: string
+	content: string
+	attachments: Array<MessageAttachmentEn>
+	isInitial: boolean
+}

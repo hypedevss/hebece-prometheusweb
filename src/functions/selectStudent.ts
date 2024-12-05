@@ -4,6 +4,8 @@ import * as cheerio from "cheerio";
 import { CookieJar } from "tough-cookie";
 import { Context, PrometheusStudent, SelectedStudent, VParam } from ".";
 import PrometheusError from "../utils/errors/PrometheusError";
+import JSONFixer from "../utils/JSONFixer";
+import { USER_AGENT } from "../strings";
 export default async function selectStudent(jar: CookieJar, students: Array<PrometheusStudent>, which: number) {
 	const client = wrapper(axios.create({ jar }));
 	const student = students[which];
@@ -43,24 +45,13 @@ export default async function selectStudent(jar: CookieJar, students: Array<Prom
 	const match = vparamHtml.match(regex);
 	let vparam:VParam = null;
 	if (match && match[1]) {
-		// INFO
-		// If you know, replace this with a better method.
-		let jsonString = match[1].replace(/(\w+)\s*:/g, '"$1":');
-		jsonString = jsonString.replace(/"true"/g, 'true');
-		jsonString = jsonString.replace(/"serverDate":\s*[^,}]+,?\s*/g, '');
-		jsonString = jsonString.replace(/"footerLogo":\s*[^,}]+,?\s*/g, '');
-		jsonString = jsonString.replace(/"false"/g, 'false');
-		jsonString = jsonString.replace(/"(\d+(\.\d+)?)"/g, '$1');
-		jsonString = jsonString.replaceAll('""', "")
-		jsonString = jsonString.replaceAll("https\"", "\"https")
-		jsonString = jsonString.replaceAll("'\"\"", "\"")
-		jsonString = jsonString.replaceAll("'", "\"")
-		vparam = JSON.parse(jsonString)
+		vparam = await JSONFixer(match[1]);
 	}
 	const apiurl = vparam.apiUrl;
 	const context = await client.get(`${apiurl}/Context`, {
 		headers: {
-			"Content-Type": "application/json"
+			"Content-Type": "application/json",
+			"User-Agent": USER_AGENT
 		}
 	});
 	const contextData:Context = context.data;

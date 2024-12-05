@@ -8,8 +8,8 @@
 # Features
 - [x] Authentication
 - [x] Multi student
-- [ ] Messages (Reading)
-- [ ] Messages (Sending)
+- [x] Messages (Reading)
+- [x] Messages (Sending)
 
 
 

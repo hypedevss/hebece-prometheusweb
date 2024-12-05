@@ -4,6 +4,7 @@ import * as cheerio from "cheerio";
 import PrometheusAuthError from "../utils/errors/PrometheusAuthError";
 import { CookieJar } from "tough-cookie";
 import { LoginSuccessObject } from ".";
+import { USER_AGENT } from "../strings";
 class LoginHandler {
 	initializeLogin: () => Promise<boolean>;
 	captcha: String[];
@@ -60,7 +61,8 @@ class LoginHandler {
 				}
 			), {
 				headers: {
-					"Content-Type": "application/x-www-form-urlencoded"
+					"Content-Type": "application/x-www-form-urlencoded",
+					"User-Agent": USER_AGENT
 				},
 				maxRedirects: 1,
 				validateStatus: () => true
