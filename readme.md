@@ -41,4 +41,4 @@ const pass = 'your password';
 })()
 ```
 
-### Proper documentation soon (or maybe never)
+### Proper documentation soon
